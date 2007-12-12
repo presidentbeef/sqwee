@@ -1,0 +1,40 @@
+<% 
+require "#{$PATH}/extlib/superredcloth"
+require "fileutils"
+require "#{$PATH}/lib/util"
+include Util
+
+rc_content = Cgi['content'].strip
+
+page = Cgi['page']
+html_content = SuperRedCloth.new(rc_content.gsub(/(\:?)\[\[(.*?)\]\]/) { |match|
+		if $1 == ":"
+			":index.rhtml?action=view&amp;page=#{name_to_link($2)}"
+		else
+			"\"#$2\":index.rhtml?action=view&amp;page=#{name_to_link($2)}"
+		end
+	}).to_html
+
+page_file = name_to_file(page)
+page_name = file_to_name(page)
+
+if page_name.include? ":"
+	FileUtils.mkpath("#{$PATH}/storage/#{page_file.split("/")[0..-2].join("/")}")
+end
+
+File.open("#{$PATH}/storage/#{page_file}.rhtml", "w+") {|f| f.print html_content }
+File.open("#{$PATH}/storage/#{page_file}.rc", "w+") {|f| f.print rc_content } 
+File.open("#{$PATH}/storage/#{page_file}.bak", "w+") {|f| f.print Cgi['old_content']} 
+
+%>
+<%= html_content %>
+
+<% if page == 'nav'
+%>
+<br>
+<div id="nav_action">
+	<span class="wbutton" id="nav_edit_button" onClick="javascript:editNav();">Edit</span>
+</div>
+<%
+end
+%>

@@ -1,0 +1,189 @@
+== Sqwee - Simple Quick Web Editing Engine
+
+Homepage:	http://sqwee.rubyforge.org/
+Author:		Justin Collins (http://presidentbeef.com/)
+Copyright:	2007, Justin Collins
+License:	GPL
+
+== Description
+
+Sqwee is a quick and easy way to have a wiki-like webpage which you can use for anything you'd like.
+
+== Requirements
+
+For sqwee-lighttpd-bin:
+
+	1. Ruby
+	
+For sqwee-lighttpd-src:
+
+	1. Ruby
+	2. Rake
+	3. GCC
+	4. Make
+	5. libpcre
+
+For sqwee-src:
+
+	1. Ruby
+	2. eruby 
+	3. SuperRedCloth
+	4. Webserver...Lighttpd, Apache, etc.
+
+== Install
+
+There are three different packages for Sqwee, each with a different purpose.
+
+=== sqwee-lighttpd-bin
+
+This package contains all the libraries and executables pre-compiled and should be the simplest to use, assuming the binaries run for you.
+
+After extracting the files and changing to the new directory, type './start_server'
+
+Point your webbrowser at http://localhost:8000/
+
+=== sqwee-lighttpd-src
+
+This package includes the source for Lighttpd, eruby, and SuperRedCloth so you can compile everything you need, except for libpcre. libpcre should be installed on your system already, or else you can easily install it using your distribution's package manager.
+
+After extracting the files and changing to the new directory, type './setup.rb'
+This should run all the configurations and compilations and put the resulting files in the correct place.
+
+Then type './start_server' to start the server.
+
+Point your webbrowser at http://localhost:8000/
+
+It is safe to delete the /src directory once everything is working properly.
+
+!! If something goes wrong:
+
+Try running './setup --debug' to get all the output you can.
+
+=== sqwee-src
+
+This package is for the do-it-yourselfers. It only provides the Ruby and Javascript files you need to get going.
+
+You basically need to point your webserver at the main directory (where index.rhtml is) and make sure it can serve up .rhtml files (with eruby).
+
+You will need to install SuperRedCloth. This can be done by
+
+'gem install superredcloth --source http://code.whytheluckystiff.net'
+
+or you can check out http://code.whytheluckystiff.net/redcloth/wiki/SuperRedCloth for more options.
+
+Personally, I suggest copying superredcloth.rb and superredcloth_scan.so to the 'extlib' directory. That way you don't have to change anything.
+
+If not, the only change you should need to make is where the lib/save.rhtml file looks for SuperRedCloth. You might have to 'require "rubygems"' too. 
+
+== Configuration
+
+[Sqwee]
+
+To change the theme for your Sqwee pages, first place your CSS file in the themes/ direction. A good starting point is to copy one of the provided themes and go from there.
+Then edit config/config.rb and change the theme to the name of your CSS file, without the .css extension.
+
+To change the title of your Sqwee pages, change the title attribute in the config/config.rb file.
+
+[Lighttpd]
+
+The configuration for Lighttpd is in config/lighttpd.conf.
+
+Setting the port number:
+
+The default port is 8000. Change the line 
+
+server.port                = 8000
+
+To whichever port you would like.
+
+Setting a password for Sqwee:
+
+Remove the '#' from the following lines:
+
+#                               "mod_auth",
+
+#auth.backend               = "plain"
+#auth.backend.plain.userfile = "/full/path/to/config/.password"
+#auth.require               = ( "/" =>
+#                               (
+#                                 "method"  => "digest",
+#                                 "realm"   => "Sqwee",
+#                                 "require" => "valid-user"
+#                               ))
+
+Change the path to the password file to match the actual location of the config/.password file. This needs to be the full path.
+
+Edit the config/.password file. The format is:
+
+username:password
+
+Run './start_server'
+
+
+== Usage
+
+=== Editing
+
+There are two areas on a page which may be edited. You can edit them by clicking the 'Edit' button. The pages you create can use Textile or HTML or both. A great reference guide to Textile can be found at http://hobix.com/textile/
+
+
+The first section is the navigation section on the left (by default). This section will appear on every page, so it is probably best to put some links in it to pages you commonly use.
+
+The other section is the main part of each page.
+
+=== New pages
+
+To create a new page, click the 'New' button. At the top, enter the title you wish the page to have. This will appear as a link at the top of the page and will also be how you refer to the page in links.
+
+The page content goes in the text area.
+
+Click 'Save' to save the page, or 'Cancel' if you decide not to create this new page.
+
+=== Links
+
+There are two ways to link to a page within Sqwee. The first is:
+
+[[Name of Page]]
+
+Which will create a link with the text 'Name of Page' which goes to a page named 'Name of Page' (this is case-sensitive!)
+
+The second way is:
+
+"Check out this nifty page!":[[Name of Page]]
+
+Which is a lot like how Textile links work and also how links look on many Wikis.
+
+If you create a link to a page which does not yet exist, clicking on it gives you the opportunity to create the new page. That way you can create the links first and fill in the pages later.
+
+=== Directories/Namespaces
+
+Imagine you have a page for 'Dogs', but you also want a page for 'Grooming Dogs', 'Feeding Dogs', and 'Training Dogs'. While you could create those exact pages, it might make more sense to create the following structure:
+
+-Dogs
+ |
+ --Grooming
+ |
+ --Feeding 
+ |
+ --Training
+
+You can do this is Sqwee by using a colon (':') in your links. For example, on the 'Dogs' page, you might have:
+
+"Grooming":[[Dogs:Grooming]]
+"Feeding":[[Dogs:Feeding]]
+"Training":[[Dogs:Training]]
+
+These can be nested arbitrarily deep, so you can also create pages for different kinds of training:
+
+[[Dogs:Training:Agility]]
+[[Dogs:Training:Obedience]]
+
+Now, if you wanted to create another page for feedings cats, you can:
+
+[[Cats:Training]]
+
+It will not interfere with the other 'Training' page.
+
+=== Deleting pages
+
+To delete a page, click the 'Delete' button. You will be asked to confirm it. 

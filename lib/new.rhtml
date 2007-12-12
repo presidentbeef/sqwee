@@ -1,0 +1,46 @@
+<%# 
+Homepage:	http://sqwee.rubyforge.org/
+Author:		Justin Collins (http://presidentbeef.com/)
+Copyright:	2007, Justin Collins
+License:	GPL
+
+    This file is part of Sqwee.
+
+    Sqwee is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Sqwee is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Sqwee.  If not, see <http://www.gnu.org/licenses/>.
+%>
+
+<%
+	if Cgi['last_page'] != ""
+		cancel = "javascript:cancelEdit('#{Cgi['last_page']}')"
+	elsif ENV["HTTP_REFERER"] and ENV["HTTP_REFERER"].include? "index.rhtml?action=view"
+		cancel = "javascript:history.back()"
+	else
+		cancel = "javascript:cancelEdit('')"
+	end
+%>
+
+<form action="index.rhtml">
+	Title: <input type="text" id="title" value="<%= 
+		if Cgi['page'] == ''
+			''
+		else
+			require "#{$PATH}/lib/util"	
+			include Util
+			Util.file_to_name(Cgi['page'])
+		end %>"><br>
+	<textarea id="content" rows="20" cols="50"></textarea><br>
+	<span class="wbutton" value="Save" onClick="javascript:saveNew()">Save</span>
+	<!-- <span class="wbutton" id="undo_button" onClick="javascript:undo()">Undo</span> -->
+	<span class="wbutton" id="cancel_button" onClick="<%= cancel %>">Cancel</span>
+</form>

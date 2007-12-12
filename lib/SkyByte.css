@@ -1,0 +1,8 @@
+.drop{ position:absolute; top:-10px; left:-10px; overflow:hidden; background:red; z-index:998; }
+.drag, .dragmove{ position:absolute; top:-40px; left:-40px; background:#fff; color:red; border:1px solid #ccc; font:10px verdana, sans-serif; padding:1px; overflow:hidden; z-index:999; }
+.dragmove{ color:#000; }
+.resizeknob{ position:absolute; top:-40px; left:-40px; background:#fff; width :6px; height:6px; border:1px solid #000; overflow:hidden; }
+.resizet, .resizeb { position:absolute; top:-40px; left:-40px; background: transparent url(rsh.gif) repeat-x 0 0; width :1px; height:1px; overflow:hidden; }
+.resizer, .resizel { position:absolute; top:-40px; left:-40px; background: transparent url(rsv.gif) repeat-y 0 0; width :1px; height:1px; overflow:hidden; }
+
+

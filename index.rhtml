@@ -1,0 +1,160 @@
+<%# 
+Homepage:	http://sqwee.rubyforge.org/
+Author:		Justin Collins (http://presidentbeef.com/)
+Copyright:	2007, Justin Collins
+License:	GPL
+
+    This file is part of Sqwee.
+
+    Sqwee is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Sqwee is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Sqwee.  If not, see <http://www.gnu.org/licenses/>.
+%>
+
+<%
+$PATH = "."
+$DEBUG = true
+$VERBOSE = true
+load "#{$PATH}/config/config.rb"
+require 'cgi'
+require "#{$PATH}/lib/util"
+include Util
+
+def full_page(content_file, current_page = nil)
+%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title><%= CONFIG['title'] %></title>
+		<link type="text/css" rel="stylesheet" href="<%= $PATH %>/themes/<%= CONFIG['theme'] %>.css">
+		<script src="<%= $PATH %>/lib/prototype.js" type="text/javascript"></script>
+		<script src="<%= $PATH %>/lib/sqwee.js" type="text/javascript"></script>
+	</head>
+
+	<body>
+		<div id="wrap">
+		<div id='page_title'><%= file_to_url(current_page) %></div>
+		<div id="nav">
+			<%= File.read("#{$PATH}/storage/nav.rhtml") %>
+			<br>
+			<div id="nav_action">
+				<span class="wbutton" id="nav_edit_button" onClick="javascript:editNav();">Edit</span>
+			</div>
+		</div>
+		<div id="main_container"> 
+		<div id="main">
+		<%	
+			if content_file.include? 'lib'
+				ERuby.import(content_file)
+			else
+				print File.read(content_file)
+			end
+		%>
+		</div>
+		<div id="actionbar" style="display:<%= content_file.include?('lib') ? 'none' : 'block' %>" >
+			<span class="wbutton" id="new_button"   onClick="javascript:newPage('<%= current_page %>');">New</span>
+			<span class="wbutton" id="edit_button" onClick="javascript:edit('<%= current_page %>');">Edit</span>
+			<% if current_page != "Index" %>
+			<span class="wbutton" id="delete_button" onClick="javascript:confirmDelete('<%= current_page %>')">Delete</span>
+			<% end %>
+		</div>
+
+		</div>
+		</div>
+	</body>
+</html>
+<%
+end
+
+Cgi = CGI.new
+
+action = Cgi['action'].downcase
+
+if Cgi['page'] == ""
+	page = 'Index'
+	action = 'view' if action == ""
+else
+	page = Cgi['page']
+end
+
+page = sanitize(CGI.escapeHTML(page))
+action = sanitize(CGI.escapeHTML(action))
+
+file = "#{$PATH}/storage/#{name_to_file(page)}.rhtml"
+
+if not File.exist? file and action == "view"
+	action = 'new_full'
+end
+
+case action
+when 'view'
+	full_page(file, page)
+when 'edit'
+	ERuby.import("#{$PATH}/lib/edit.rhtml")
+when 'new_full'
+	full_page("#{$PATH}/lib/new.rhtml", page)
+when 'new'
+	ERuby.import("#{$PATH}/lib/new.rhtml")
+when 'delete'
+	ERuby.import("#{$PATH}/lib/delete.rhtml")
+when 'confirm_delete'
+	%>
+	<span class="warning">Are you sure you want to delete <%= file_to_name(page) %>?</span><br>
+	<span class="wbutton" id="yes_button" onClick="javascript:deletePage('<%= page %>');">Yes</span>
+	<span class="wbutton" id="no_button" onClick="javascript:cancelEdit('<%= page %>');">No</span>
+	<%	
+when 'save'
+	ERuby.import("#{$PATH}/lib/save.rhtml")
+when 'savenew'
+	ERuby.import("#{$PATH}/lib/save.rhtml")
+when 'show'
+	print File.read(file)
+when 'revert'
+	print File.read("#{$PATH}/storage/#{Util.name_to_file(page)}.bak")
+when 'show_rc'
+	print File.read("#{$PATH}/storage/#{page}.rc")
+when "checkpage"
+	test_page = Cgi['test_page'].downcase.gsub(/ /, "_")
+	if File.exist? "#{$PATH}/storage/#{test_page}.rhtml"
+		print File.read("#{$PATH}/storage/#{page}.rc").strip
+	end
+when 'error'
+	ERuby.import("#{$PATH}/storage/error.rhtml")
+when 'editnav'
+	ERuby.import("#{$PATH}/lib/editnav.rhtml")
+when 'shownav'
+	print File.read("#{$PATH}/storage/nav.rhtml")
+	%>
+	<br>
+	<div id="nav_action">
+		<span class="wbutton" id="nav_edit_button" onClick="javascript:editNav();">Edit</span>
+	</div>
+	<%
+
+when 'reload_actionbar'
+	current_page = name_to_link(Cgi['page'])
+%>
+	<span class="wbutton" id="new_button"   onClick="javascript:newPage('<%= current_page %>');">New</span>
+	<span class="wbutton" id="edit_button" onClick="javascript:edit('<%= current_page %>');">Edit</span>
+	<% if current_page != "Index" %>
+	<span class="wbutton" id="delete_button" onClick="javascript:confirmDelete('<%= current_page %>')">Delete</span>
+	<% end %>
+
+<%
+when 'reload_title'
+%>
+	<%= file_to_url(Cgi['current_page']) %>
+<%
+else
+end
+%>
+

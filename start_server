@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+$stderr.puts "Setting server root directory..."
+
+File.open("config/.lighttpd.conf.bak", "w") do |f|
+	File.readlines("./config/lighttpd.conf").each do |line|
+		case line
+		when /^server.document-root\s+=\s+"#{Dir.pwd}"/
+			f.puts line
+
+		when /^server.document-root\s+=\s+".*"/
+			f.puts "server.document-root        = \"#{Dir.pwd}\""
+		else
+			f.puts line
+		end
+	end
+end
+
+`mv ./config/.lighttpd.conf.bak ./config/lighttpd.conf`
+
+if File.exist? "lighttpd.pid"
+	pid = File.read "lighttpd.pid"
+	if pid != ""
+		$stderr.puts "Attempting to shut down Lighttpd..."
+		`kill #{pid}`
+	end
+end
+
+$stderr.puts "Attempting to start Lighttpd..."
+
+`export LD_LIBRARY_PATH=./extlib/lighttpd_modules/: ; ./bin/lighttpd -m ./extlib/lighttpd_modules/ -f config/lighttpd.conf`

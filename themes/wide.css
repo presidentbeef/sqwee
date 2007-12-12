@@ -1,0 +1,210 @@
+body {
+}
+
+a {
+}
+
+a:hover {
+
+}
+
+a:active {
+
+}
+
+a:visited {
+
+}
+
+div#wrap {
+	margin: 0 auto;
+}
+
+div#nav {
+	text-align: center;
+	padding: 0px;
+	padding-top: 0px;
+}
+
+div#nav p {
+	padding: 1px;
+	margin: 0px;
+}
+
+div#nav a {
+
+}
+
+div#nav a:hover {
+
+}
+
+div#nav a:active {
+
+}
+
+div#nav a:visited {
+
+}
+
+div#nav_action {
+	position: absolute;
+	margin: 0px;
+	padding: 0px;
+	text-align: right;
+	top: 7px;
+	right: 7px
+}
+
+div#nav textarea {
+	width: 50%;
+}
+
+#nav_edit_button {
+
+}
+
+#nav_edit_button:hover {
+
+}
+
+#nav_edit_button:active {
+
+}
+
+div#main_container {
+	padding-left: 5px;
+}
+
+div#main {
+
+}
+
+
+
+div#main a {
+
+}
+
+div#main a:hover {
+
+}
+
+div#main a:active {
+
+}
+
+div#main a:visited {
+
+}
+
+
+div#actionbar {
+	clear: both;
+	border-top:1px dashed black;
+	margin-top: 20px;
+	padding: 5px;
+}
+
+
+div#page_title {
+	font-size: large;
+	font-weight: bold;
+	position: absolute;
+	top: 30px;
+	margin: 5px;
+}
+
+div#page_title a {
+	text-decoration: none;
+	color: darkblue;
+}
+
+textarea {
+}
+
+
+textarea#content {
+	width: 90%;
+	height: 80%;
+	background: #edfbff;
+}
+
+.wbutton {
+	cursor: pointer;
+	border: 1px black outset;
+	padding: 0px 3px 0px 3px;
+	margin-top: 5px;
+	background: white;
+}
+
+.wbutton:hover {
+	background: #daf6ff;
+	border: 1px red outset;
+}
+
+.wbutton:active {
+	border: 1px black inset;
+}
+
+.warning {
+	color: red;
+	font-weight: bold;
+}
+
+
+
+#new_button {
+
+}
+
+#new_button:active {
+
+}
+
+#new_button:hover {
+
+}
+
+#edit_button {
+
+}
+
+#edit_button:active {
+
+}
+
+#edit_button:hover {
+
+}
+
+#delete_button {
+
+}
+
+#delete_button:active {
+
+}
+
+#delete_button:hover {
+
+}
+
+#yes_button {
+
+}
+
+#yes_button:active {
+
+}
+
+#yes_button:hover {
+
+}
+
+.section {
+	width: 300px;
+	border: 1px dashed gray;
+}
+
+

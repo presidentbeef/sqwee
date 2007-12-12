@@ -1,0 +1,211 @@
+body {
+	background: #6dc3ef;
+}
+
+a {
+}
+
+a:hover {
+
+}
+
+a:active {
+
+}
+
+a:visited {
+
+}
+
+div#wrap {
+
+}
+
+div#nav {
+	position: absolute;
+	right: 10px;
+	top: 33px;
+	border: black solid 3px;
+	margin: 10px;
+	padding: 1px;
+	float: right;
+	width: 200px;
+	text-align: center;
+	background: white;
+}
+
+div#nav a {
+
+}
+
+div#nav a:hover {
+
+}
+
+div#nav a:active {
+
+}
+
+div#nav a:visited {
+
+}
+
+div#nav_action {
+	text-align: right;
+	margin-bottom: 1px;
+}
+
+#nav_edit_button {
+
+}
+
+#nav_edit_button:hover {
+
+}
+
+#nav_edit_button:active {
+
+}
+
+div#main_container {
+	height: 70%;
+	width: 70%;
+	padding: 10px;
+	position: absolute;
+}
+
+div#main {
+
+	background: white;
+	height: 100%;
+	width: 100%;
+	border: 3px black solid;
+	padding: 10px;
+	overflow: auto;
+}
+
+
+
+div#main a {
+
+}
+
+div#main a:hover {
+
+}
+
+div#main a:active {
+
+}
+
+div#main a:visited {
+
+}
+
+
+div#actionbar {
+	padding-top: 10px;
+}
+
+
+div#page_title {
+	font-size: large;
+	font-weight: bold;
+	text-align: left;
+	padding-left: 10px;
+}
+
+div#page_title a {
+	text-decoration: none;
+	color: #003855;
+}
+
+textarea {
+
+}
+
+textarea#content {
+	background: white;
+	width: 90%;
+	height: 80%;
+}
+
+.wbutton {
+	cursor: pointer;
+	border: 1px gray solid;
+	padding: 0px 3px 0px 3px;
+	margin-top: 5px;
+	background: white;
+	color: gray;
+}
+
+.wbutton:hover {
+	border: 1px black outset;
+	color: black;
+}
+
+.wbutton:active {
+	border: 1px black inset;
+}
+
+.warning {
+	color: red;
+	font-weight: bold;
+}
+
+
+
+#new_button {
+
+}
+
+#new_button:active {
+
+}
+
+#new_button:hover {
+
+}
+
+#edit_button {
+
+}
+
+#edit_button:active {
+
+}
+
+#edit_button:hover {
+
+}
+
+#delete_button {
+
+}
+
+#delete_button:active {
+
+}
+
+#delete_button:hover {
+
+}
+
+#yes_button {
+
+}
+
+#yes_button:active {
+
+}
+
+#yes_button:hover {
+
+}
+
+.section {
+	width: 300px;
+	border: 1px dashed gray;
+}
+
+
