@@ -69,15 +69,33 @@ This package is for the do-it-yourselfers. It only provides the Ruby and Javascr
 
 You basically need to point your webserver at the main directory (where index.rhtml is) and make sure it can serve up .rhtml files (with eruby).
 
-You will need to install SuperRedCloth. This can be done by
+You will need to install SuperRedCloth. Visit http://code.whytheluckystiff.net/redcloth/wiki/SuperRedCloth to get and build the code. The two resulting files you'll need are 'superredcloth.rb' and 'superredcloth_scan.so'. Copy these two files to the 'extlib' directory for best results.
 
-'gem install superredcloth --source http://code.whytheluckystiff.net'
+Right now, you will probably get this kind of error when visiting the sqwee directory:
+no such file to load -- ./config/config.rb (LoadError)
 
-or you can check out http://code.whytheluckystiff.net/redcloth/wiki/SuperRedCloth for more options.
+You need to set the $PATH variable in index.rhtml. This is from the directory where eruby is located to the directory where index.rhtml is located.
 
-Personally, I suggest copying superredcloth.rb and superredcloth_scan.so to the 'extlib' directory. That way you don't have to change anything.
+For example, if you have the following file structure:
 
-If not, the only change you should need to make is where the lib/save.rhtml file looks for SuperRedCloth. You might have to 'require "rubygems"' too. 
+-www
+ |
+ --cgi-bin
+ | |
+ | --eruby
+ |
+ --sqwee
+   |
+   --index.rhtml
+
+Then your $PATH variable should be set to: '../sqwee/' (Trailing slash optional)
+
+If the Sqwee default page is loading correctly, try editing and saving it. If you get an error like
+../sqwee//lib/save.rhtml:24:in `require': no such file to load -- ../sqwee//extlib/superredcloth (LoadError)
+
+Then Sqwee is having trouble finding the SuperRedCloth files. Either place them in the 'extlib' directory or else you will need to change 'lib/save.rhtml' to point to their location.
+
+Once that is all done, you should be pretty much ready to go. The only trouble is that your page might be accessible to the whole world. If you are using Apache, you can drop a .htaccess file right in the main directory to password protect it. If you are using Lighttpd, take a look at 'config/lighttpd.conf' for some thoughts on protecting you Sqwee pages.
 
 == Configuration
 
