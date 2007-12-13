@@ -30,6 +30,9 @@ else
 	quiet = "--quiet"
 end
 
+FileUtils.rm_rf("bin/*", {:secure => true})
+FileUtils.rm_rf("extlib/*", {:secure => true})
+
 #Build Ragel
 Dir.chdir("src/ragel") do
 	$stderr.puts "Building Ragel..."

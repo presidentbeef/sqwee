@@ -46,6 +46,10 @@ Point your webbrowser at http://localhost:8000/
 
 This package includes the source for Lighttpd, eruby, and SuperRedCloth so you can compile everything you need, except for libpcre. libpcre should be installed on your system already, or else you can easily install it using your distribution's package manager.
 
+You -will- need to install Rake (for SuperRedCloth), but that's easy:
+
+'gem install rake'
+
 After extracting the files and changing to the new directory, type './setup.rb'
 This should run all the configurations and compilations and put the resulting files in the correct place.
 
@@ -53,7 +57,7 @@ Then type './start_server' to start the server.
 
 Point your webbrowser at http://localhost:8000/
 
-It is safe to delete the /src directory once everything is working properly.
+It is safe to delete the /src directory once everything is working properly and if you want you can remove Rake: 'gem uninstall rake'.
 
 !! If something goes wrong:
 
