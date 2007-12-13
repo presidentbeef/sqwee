@@ -29,9 +29,10 @@ File.open("config/.lighttpd.conf.bak", "w") do |f|
 		case line
 		when /^server.document-root\s+=\s+"#{Dir.pwd}"/
 			f.puts line
-
 		when /^server.document-root\s+=\s+".*"/
 			f.puts "server.document-root        = \"#{Dir.pwd}\""
+		when /^cgi.assign = \(".rhtml" => ".*"\)/
+			f.puts "cgi.assign = (\".rhtml\" => \"#{Dir.pwd}\/bin\/eruby\")"
 		else
 			f.puts line
 		end

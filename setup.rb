@@ -78,6 +78,9 @@ $stderr.puts "Installing Lighttpd..."
 modules = ["src/lighttpd/src/.libs/mod_auth.la", "src/lighttpd/src/.libs/mod_auth.so", "src/lighttpd/src/.libs/mod_access.la", "src/lighttpd/src/.libs/mod_access.so", "src/lighttpd/src/.libs/mod_accesslog.la", "src/lighttpd/src/.libs/mod_accesslog.so", "src/lighttpd/src/.libs/mod_cgi.la", "src/lighttpd/src/.libs/mod_cgi.so", "src/lighttpd/src/.libs/mod_indexfile.la", "src/lighttpd/src/.libs/mod_indexfile.so", "src/lighttpd/src/.libs/mod_dirlisting.la", "src/lighttpd/src/.libs/mod_dirlisting.so", "src/lighttpd/src/.libs/mod_staticfile.la", "src/lighttpd/src/.libs/mod_staticfile.so" ]
 
 FileUtils.cp("src/lighttpd/src/lighttpd", "bin/")
+if not File.exist? "extlib/lighttpd_modules"
+	FileUtils.mkdir "extlib/lighttpd_modules/"
+end
 FileUtils.cp(modules, "extlib/lighttpd_modules/")
 
 $stderr.puts "Installing eruby..."
