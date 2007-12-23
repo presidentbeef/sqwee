@@ -1,4 +1,4 @@
 CONFIG = {
-'title' => 'Sqwee',
-'theme' => 'default'
+	'title' => 'Sqwee',
+	'theme' => 'default'
 }
