@@ -24,8 +24,11 @@ License:	GPL
 current_page = File.open("#{$PATH}/storage/nav.rc") {|f| f.read} 
 %>
 	<br>
-	<textarea id="content" rows="20" ><%= current_page %></textarea><br>
+	<span id="nav_content_span">
+		<textarea id="content" rows="20" ><%= current_page %></textarea>
+	</span>
+	<br>
 	<textarea id="original_content" style="display:none"><%= current_page %></textarea>
 	<span class="wbutton" id="save_button" onClick="javascript:save('nav', 'nav')">Save</span>
-	<span class="wbutton" id="revert_button" onClick="javascript:revertEdit('nav')">Revert</span>
+	<span class="wbutton" id="revert_button" onClick="javascript:revertEditNav('nav')">Revert</span>
 	<span class="wbutton" id="cancel_button" onClick="javascript:cancelEdit('nav')">Cancel</span>

@@ -33,7 +33,7 @@ License:	GPL
 <form action="index.rhtml">
 	Title: <input type="text" id="title" value="<%= 
 		if Cgi['page'] == ''
-			''
+			'New Page'
 		else
 			require "#{$PATH}/lib/util"	
 			include Util

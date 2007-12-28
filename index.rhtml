@@ -29,6 +29,17 @@ require 'cgi'
 require "#{$PATH}/lib/util"
 include Util
 
+#Returns the HTML for the 'action bar' (New, Edit, Delete buttons)
+def action_bar(current_page)
+%>
+			<span class="wbutton" id="new_button"   onClick="javascript:newPage('<%= current_page %>');">New</span>
+			<span class="wbutton" id="edit_button" onClick="javascript:edit('<%= current_page %>');">Edit</span>
+			<% if current_page != "Index" %>
+			<span class="wbutton" id="delete_button" onClick="javascript:confirmDelete('<%= current_page %>')">Delete</span>
+			<% end
+end
+
+#Return full HTML page with specified content
 def full_page(content_file, current_page = nil)
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -61,13 +72,8 @@ def full_page(content_file, current_page = nil)
 		%>
 		</div>
 		<div id="actionbar" style="display:<%= content_file.include?('lib') ? 'none' : 'block' %>" >
-			<span class="wbutton" id="new_button"   onClick="javascript:newPage('<%= current_page %>');">New</span>
-			<span class="wbutton" id="edit_button" onClick="javascript:edit('<%= current_page %>');">Edit</span>
-			<% if current_page != "Index" %>
-			<span class="wbutton" id="delete_button" onClick="javascript:confirmDelete('<%= current_page %>')">Delete</span>
-			<% end %>
+			<% action_bar(current_page) %>
 		</div>
-
 		</div>
 		</div>
 	</body>
@@ -79,6 +85,7 @@ Cgi = CGI.new
 
 action = Cgi['action'].downcase
 
+#Check 'page' CGI value, display index if none
 if Cgi['page'] == ""
 	page = 'Index'
 	action = 'view' if action == ""
@@ -91,46 +98,61 @@ action = sanitize(CGI.escapeHTML(action))
 
 file = "#{$PATH}/storage/#{name_to_file(page)}.rhtml"
 
+#If the requested page does not exist, show new page creation form
 if not File.exist? file and action == "view"
 	action = 'new_full'
 end
 
 case action
+#Loads full page
 when 'view'
 	full_page(file, page)
+#Edit page
 when 'edit'
 	ERuby.import("#{$PATH}/lib/edit.rhtml")
+#This is called when a link is followed to a non-existent page
 when 'new_full'
 	full_page("#{$PATH}/lib/new.rhtml", page)
+#New page
 when 'new'
 	ERuby.import("#{$PATH}/lib/new.rhtml")
+#Deletes a page and related files
 when 'delete'
 	ERuby.import("#{$PATH}/lib/delete.rhtml")
+#Asks for confirmation to delete page
 when 'confirm_delete'
 	%>
 	<span class="warning">Are you sure you want to delete <%= file_to_name(page) %>?</span><br>
 	<span class="wbutton" id="yes_button" onClick="javascript:deletePage('<%= page %>');">Yes</span>
 	<span class="wbutton" id="no_button" onClick="javascript:cancelEdit('<%= page %>');">No</span>
 	<%	
+#Saves the page	
 when 'save'
 	ERuby.import("#{$PATH}/lib/save.rhtml")
-when 'savenew'
-	ERuby.import("#{$PATH}/lib/save.rhtml")
+#This only returns the HTML content of a page
 when 'show'
 	print File.read(file)
+#Replaces content edit box with the previous version of the page	
 when 'revert'
-	print File.read("#{$PATH}/storage/#{Util.name_to_file(page)}.bak")
+%>
+	<textarea id="content" rows="20"><%= File.read("#{$PATH}/storage/#{Util.name_to_file(page)}.bak") %></textarea>
+<%	
+#Returns the un-HTMLized content of a page
 when 'show_rc'
 	print File.read("#{$PATH}/storage/#{page}.rc")
+#Checks if a page exists	
 when "checkpage"
 	test_page = Cgi['test_page'].downcase.gsub(/ /, "_")
 	if File.exist? "#{$PATH}/storage/#{test_page}.rhtml"
 		print File.read("#{$PATH}/storage/#{page}.rc").strip
 	end
+#Error page
 when 'error'
 	ERuby.import("#{$PATH}/storage/error.rhtml")
+#Editor for navigation box
 when 'editnav'
 	ERuby.import("#{$PATH}/lib/editnav.rhtml")
+#Returns HTML contents of navigation box	
 when 'shownav'
 	print File.read("#{$PATH}/storage/nav.rhtml")
 	%>
@@ -139,17 +161,10 @@ when 'shownav'
 		<span class="wbutton" id="nav_edit_button" onClick="javascript:editNav();">Edit</span>
 	</div>
 	<%
-
+#Resets the action bar with new page name (e.g., after creating a new page)
 when 'reload_actionbar'
-	current_page = name_to_link(Cgi['page'])
-%>
-	<span class="wbutton" id="new_button"   onClick="javascript:newPage('<%= current_page %>');">New</span>
-	<span class="wbutton" id="edit_button" onClick="javascript:edit('<%= current_page %>');">Edit</span>
-	<% if current_page != "Index" %>
-	<span class="wbutton" id="delete_button" onClick="javascript:confirmDelete('<%= current_page %>')">Delete</span>
-	<% end %>
-
-<%
+	action_bar(name_to_link(Cgi['page']))
+#Displays page title (e.g, after creating a new page)
 when 'reload_title'
 %>
 	<%= file_to_url(Cgi['current_page']) %>

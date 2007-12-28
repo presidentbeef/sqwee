@@ -23,8 +23,11 @@ License:	GPL
 <% 
 current_page = File.open("#{$PATH}/storage/#{name_to_file(page)}.rc") {|f| f.read} 
 %>
+<br>
+	<span id="content_span">
+		<textarea id="content" rows="20"><%= current_page %></textarea>
+	</span>
 	<br>
-	<textarea id="content" rows="20"><%= current_page %></textarea><br>
 	<textarea id="original_content" style="display:none"><%= current_page %></textarea>
 	<span class="wbutton" id="save_button" onClick="javascript:save('<%= page %>')">Save</span>
 	<span class="wbutton" id="revert_button" onClick="javascript:revertEdit('<%= page %>')">Revert</span>
