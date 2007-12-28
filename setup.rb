@@ -107,4 +107,7 @@ Dir.chdir("src/lighttpd") do
 	system("make clean")
 end
 
-$stderr.puts "Everything should be successfully set up! Try ./start_server to find out, then point your web browser at http://localhost:8000/"
+$stderr.puts "-" * 50
+$stderr.puts "Everything should be successfully set up!"
+$stderr.puts "Try ./start_server to find out, then point your web browser at http://localhost:8000/"
+
