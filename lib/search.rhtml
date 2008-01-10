@@ -1,0 +1,63 @@
+<%# 
+Homepage:	http://sqwee.rubyforge.org/
+Author:		Justin Collins (http://presidentbeef.com/)
+Copyright:	2007, Justin Collins
+License:	GPL
+
+    This file is part of Sqwee.
+
+    Sqwee is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Sqwee is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Sqwee.  If not, see <http://www.gnu.org/licenses/>.
+%>
+
+<% 
+	require "#{$PATH}/lib/util"
+	if Cgi['action'] == "find"
+		%><br><b>Search results for <%= Cgi['search_value'] %>:</b><ul><%
+		search_value =/#{Cgi['search_value']}/i
+		some = false
+		Dir["#{$PATH}/storage/**/*.rc"].sort.each do |path|
+			File.open(path) do |file|
+				file.grep(search_value) do
+					unless path == "#{$PATH}/storage/nav.rc"
+						path.match(/storage\/(.*)\.rc/)
+						%><li><%= Util.file_to_url(file_to_name($1)) %></li><%
+						some = true
+					end
+					break
+				end
+			end
+		end
+		%></ul><%
+		puts "No results" if not some
+	%>
+	<br><br><a href="index.rhtml?action=search">New search</a>
+	<%
+		elsif Cgi['all'] == "show"
+			%><br><b>All Pages:</b><ul><%
+			Dir["#{$PATH}/storage/**/*.rc"].sort.each do |file|
+				unless file == "#{$PATH}/storage/nav.rc"
+					file.match(/storage\/(.*)\.rc/)
+					%><li><%= Util.file_to_url(file_to_name($1)) %></li><%
+				end
+			end
+			%></ul><%
+		else
+		%>
+		<br>
+		<input type="text" id="search_value" >
+		<span class="wbutton" id="search_button" onClick="javascript:search()">Search</span><br><br>
+		<a href="index.rhtml?action=search&amp;all=show">Show all pages</a>
+		<%
+		end
+	%>

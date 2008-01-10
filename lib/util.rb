@@ -30,7 +30,7 @@ module Util
 	end
 
 	def file_to_name(file)
-		file.strip.gsub(/_/, " ").gsub(/:/, ":")
+		file.strip.gsub(/_/, " ").gsub(/\//, ":")
 	end
 
 	def file_to_url(file)

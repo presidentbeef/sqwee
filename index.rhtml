@@ -169,6 +169,10 @@ when 'reload_title'
 %>
 	<%= file_to_url(Cgi['current_page']) %>
 <%
+when 'search'
+	full_page("lib/search.rhtml", "Search")
+when 'find'
+	ERuby.import("#{$PATH}/lib/search.rhtml")
 else
 end
 %>
