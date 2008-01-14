@@ -22,42 +22,23 @@ License:	GPL
 
 <% 
 	require "#{$PATH}/lib/util"
-	if Cgi['action'] == "find"
-		%><br><b>Search results for <%= Cgi['search_value'] %>:</b><ul><%
+	%><br><b>Search results for <%= Cgi['search_value'] %>:</b><ul><%
 		search_value =/#{Cgi['search_value']}/i
-		some = false
+		results = 0
 		Dir["#{$PATH}/storage/**/*.rc"].sort.each do |path|
 			File.open(path) do |file|
 				file.grep(search_value) do
 					unless path == "#{$PATH}/storage/nav.rc"
 						path.match(/storage\/(.*)\.rc/)
 						%><li><%= Util.file_to_url(file_to_name($1)) %></li><%
-						some = true
+						results += 1
 					end
 					break
 				end
 			end
 		end
-		%></ul><%
-		puts "No results" if not some
-	%>
-	<br><br><a href="index.rhtml?action=search">New search</a>
-	<%
-		elsif Cgi['all'] == "show"
-			%><br><b>All Pages:</b><ul><%
-			Dir["#{$PATH}/storage/**/*.rc"].sort.each do |file|
-				unless file == "#{$PATH}/storage/nav.rc"
-					file.match(/storage\/(.*)\.rc/)
-					%><li><%= Util.file_to_url(file_to_name($1)) %></li><%
-				end
-			end
-			%></ul><%
-		else
-		%>
+		%></ul><%= results > 0 ? "#{results} results" : "No results" %>
 		<br>
-		<input type="text" id="search_value" >
-		<span class="wbutton" id="search_button" onClick="javascript:search()">Search</span><br><br>
-		<a href="index.rhtml?action=search&amp;all=show">Show all pages</a>
-		<%
-		end
-	%>
+	<br>
+	<input type="text" id="search_value" >
+	<span class="wbutton" id="search_button" onClick="javascript:search()">Search</span><br><br>
