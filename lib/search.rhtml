@@ -23,7 +23,7 @@ License:	GPL
 <% 
 	require "#{$PATH}/lib/util"
 	%><br><b>Search results for <%= Cgi['search_value'] %>:</b><ul><%
-		search_value =/#{Cgi['search_value']}/i
+		search_value =/#{Cgi['search_value'].strip}/i
 		results = 0
 		Dir["#{$PATH}/storage/**/*.rc"].sort.each do |path|
 			File.open(path) do |file|

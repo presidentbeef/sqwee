@@ -29,10 +29,10 @@ require 'cgi'
 require "#{$PATH}/lib/util"
 include Util
 
-#Returns the HTML for the 'action bar' (New, Edit, Delete buttons)
+#Returns the HTML for the 'action bar' (New, Edit, Delete, Search buttons)
 def action_bar(current_page)
 %>
-			<span id="search_bar" style="float:right">
+			<span id="search_bar" style="">
 				<input type="text" id="search_value" style="width:120px" >
 				<span class="wbutton" id="search_button" onClick="javascript:search()">Search</span><br><br>
 			</span>

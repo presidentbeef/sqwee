@@ -59,6 +59,8 @@ div#main_container {
 	margin-left: 230px;
 	padding-left: 10px;
 	background: orange;
+	position: relative;
+	top: -2px;
 }
 
 div#main {
@@ -143,6 +145,17 @@ textarea#content {
 }
 
 #nav_edit_button:active {
+
+}
+
+span#search_bar {
+	float: left;
+	position:relative;
+	top: 40px;
+	left: -15px;
+}
+
+#search_button {
 
 }
 

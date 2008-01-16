@@ -61,6 +61,14 @@ div#nav_action {
 
 }
 
+span#search_bar {
+	float: right;
+}
+
+#search_button {
+
+}
+
 div#main_container {
 	min-height: 50px;
 	border-top: 1px dashed black;

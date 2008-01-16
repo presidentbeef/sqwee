@@ -72,6 +72,14 @@ div#nav textarea {
 
 }
 
+span#search_bar {
+	float: right;
+}
+
+#search_button {
+
+}
+
 div#main_container {
 	padding-left: 5px;
 }
