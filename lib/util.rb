@@ -43,6 +43,6 @@ module Util
 	end
 
 	def sanitize(string)
-		string.strip.gsub(/[^a-zA-Z0-9_:-]/, "")
+		string.strip.gsub(/\.\./, "")
 	end
 end

@@ -30,7 +30,7 @@ else
 	quiet = "--quiet"
 end
 
-abort "Rake required for compilation - please use 'gem install rake' to install. You make uninstall after successfully building Sqwee." unless system("rake --version")
+abort "Rake required for compilation - please use 'gem install rake' to install. You may uninstall after successfully building Sqwee." unless system("which rake")
 
 FileUtils.rm_rf("bin/*", {:secure => true})
 FileUtils.rm_rf("extlib/*", {:secure => true})
