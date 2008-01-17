@@ -19,7 +19,6 @@ License:	GPL
     You should have received a copy of the GNU General Public License
     along with Sqwee.  If not, see <http://www.gnu.org/licenses/>.
 %>
-
 <% 
 require "#{$PATH}/extlib/superredcloth"
 require "fileutils"
@@ -48,15 +47,7 @@ File.open("#{$PATH}/storage/#{page_file}.rhtml", "w+") {|f| f.print html_content
 File.open("#{$PATH}/storage/#{page_file}.rc", "w+") {|f| f.print rc_content } 
 File.open("#{$PATH}/storage/#{page_file}.bak", "w+") {|f| f.print Cgi['old_content']} 
 
-%>
-<%= html_content %>
+sleep 2
 
-<% if page == 'nav'
 %>
-<br>
-<div id="nav_action">
-	<span class="wbutton" id="nav_edit_button" onClick="javascript:editNav();">Edit</span>
-</div>
-<%
-end
-%>
+<span class="wbutton" id="quick_save_button" onClick="javascript:quickSave('<%= page %>')">Quick Save</span>
