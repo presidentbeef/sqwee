@@ -138,6 +138,9 @@ when 'confirm_delete'
 #Saves the page	
 when 'save'
 ERuby.import("#{$PATH}/lib/save.rhtml")
+#Saves page but remains in 'edit' mode
+when 'quicksave'
+ERuby.import("#{$PATH}/lib/quick_save.rhtml")
 #This only returns the HTML content of a page
 when 'show'
 print File.read(file)
