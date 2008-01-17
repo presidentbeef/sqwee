@@ -47,7 +47,5 @@ File.open("#{$PATH}/storage/#{page_file}.rhtml", "w+") {|f| f.print html_content
 File.open("#{$PATH}/storage/#{page_file}.rc", "w+") {|f| f.print rc_content } 
 File.open("#{$PATH}/storage/#{page_file}.bak", "w+") {|f| f.print Cgi['old_content']} 
 
-sleep 2
-
 %>
 <span class="wbutton" id="quick_save_button" onClick="javascript:quickSave('<%= page %>')">Quick Save</span>
