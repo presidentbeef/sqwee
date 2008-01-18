@@ -115,6 +115,7 @@ textarea#content {
 
 
 .wbutton {
+	display: inline-block;
 	cursor: pointer;
 	border: 1px black outset;
 	padding: 0px 3px 0px 3px;
