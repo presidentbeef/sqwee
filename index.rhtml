@@ -147,7 +147,7 @@ print File.read(file)
 #Replaces content edit box with the previous version of the page	
 when 'revert'
 %>
-<textarea id="content" rows="20"><%= File.read("#{$PATH}/storage/#{Util.name_to_file(page)}.bak") %></textarea>
+<textarea id="<%= page == "nav" ? "nav_" : "" %>content" rows="20"><%= File.read("#{$PATH}/storage/#{Util.name_to_file(page)}.bak") %></textarea>
 <%	
 #Returns the un-HTMLized content of a page
 when 'show_rc'
