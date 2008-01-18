@@ -1,0 +1,241 @@
+body {
+	background-color: black;
+	font-weight: bold;
+	font-family: fantasy;
+	line-height: 20px;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+	border-bottom: 1px red dotted;
+}
+
+a:hover {
+	color: red;
+	border-bottom: 1px white dotted;
+}
+
+a:active {
+
+}
+
+a:visited {
+
+}
+
+div#wrap {
+	margin: 0 auto;
+}
+
+div#nav {
+	width: 200px;
+	height: 400px;
+	float: left;
+	padding: 5px;
+	padding-top: 0px;
+	background-color: #3a0f0f;
+	overflow: auto;
+}
+
+div#nav a {
+
+}
+
+div#nav a:hover {
+
+}
+
+div#nav a:active {
+
+}
+
+div#nav a:visited {
+
+}
+
+div#nav_action {
+	position: absolute;
+	top: 375px;
+}
+
+div#main_container {
+	color: #c60c00;
+	background-color: #3a0f0f;
+	margin-left: 230px;
+	padding-left: 10px;
+}
+
+div#nav_edit_bar {
+	margin-top: 3px;
+}
+
+div#main {
+	height: 406px;
+	overflow: auto;
+}
+
+div#main a {
+	color: #c60c00;
+	border-bottom: #ff8800 2px dotted;
+}
+
+div#main a:hover {
+	color: #ffb400;
+}
+
+div#main a:active {
+
+}
+
+div#main a:visited {
+
+}
+
+div#actionbar {
+	clear: both;
+	padding: 5px;
+	text-align: right;
+}
+
+div#page_title {
+	color: #ffb400;
+	font-size: large;
+	font-weight: bold;
+	position: absolute;
+	top: 415px;
+	width: 209px;
+	border: 1px solid red;
+}
+
+div#page_title a {
+	text-decoration: none;
+	border: none;
+	color: red;
+}
+
+div#page_title a:hover {
+	color: #290d0d;
+}
+
+textarea {
+
+}
+
+textarea#content {
+	background: white;
+	width: 90%;
+	height: 80%;
+}
+
+div#edit_bar {
+	padding: 3px;
+}
+
+.wbutton {
+	display: inline-block;
+	cursor: pointer;
+	border: 1px black outset;
+	padding: 0px 3px 0px 3px;
+	margin-top: 5px;
+	background: red;
+	font-size: 10px;
+	color: #290d0d;
+}
+
+.wbutton:hover {
+	border: 1px red outset;
+}
+
+.wbutton:active {
+	border: 1px black inset;
+}
+
+.warning {
+	color: red;
+	font-weight: bold;
+}
+
+#nav_edit_button {
+
+}
+
+#nav_edit_button:hover {
+
+}
+
+#nav_edit_button:active {
+
+}
+
+textarea#nav_content {
+	background: white;
+	width: 90%;
+	height: 80%;
+}
+
+span#search_bar {
+	float: left;
+	position:relative;
+	top: 40px;
+	left: -15px;
+}
+
+#search_button {
+
+}
+
+#new_button {
+
+}
+
+#new_button:active {
+
+}
+
+#new_button:hover {
+
+}
+
+#edit_button {
+
+}
+
+#edit_button:active {
+
+}
+
+#edit_button:hover {
+
+}
+
+#delete_button {
+
+}
+
+#delete_button:active {
+
+}
+
+#delete_button:hover {
+
+}
+
+#yes_button {
+
+}
+
+#yes_button:active {
+
+}
+
+#yes_button:hover {
+
+}
+
+.section {
+	width: 300px;
+	border: 1px dashed gray;
+}
+
+
