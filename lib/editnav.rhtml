@@ -29,6 +29,8 @@ current_page = File.open("#{$PATH}/storage/nav.rc") {|f| f.read}
 	</span>
 	<br>
 	<textarea id="nav_original_content" style="display:none"><%= current_page %></textarea>
-	<span class="wbutton" id="nav_save_button" onClick="javascript:save('nav', 'nav')">Save</span>
-	<span class="wbutton" id="nav_revert_button" onClick="javascript:revertEditNav('nav')">Revert</span>
-	<span class="wbutton" id="nav_cancel_button" onClick="javascript:cancelEdit('nav')">Cancel</span>
+	<div id="nav_edit_bar">
+		<span class="wbutton" id="nav_save_button" onClick="javascript:save('nav', 'nav')">Save</span>
+		<span class="wbutton" id="nav_revert_button" onClick="javascript:revertEditNav('nav')">Revert</span>
+		<span class="wbutton" id="nav_cancel_button" onClick="javascript:cancelEdit('nav')">Cancel</span>
+	</div>

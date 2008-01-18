@@ -1,5 +1,8 @@
 body {
-	background: #6dc3ef;
+	background: #FF9999;
+	color: #9966CC;
+	font-family: comic, arial, verdana, sans-serif;
+	font-weight: bold;
 }
 
 a {
@@ -22,23 +25,23 @@ div#wrap {
 }
 
 div#nav {
-	position: absolute;
-	right: 10px;
-	top: 33px;
-	border: black solid 3px;
+	border: black solid 10px;
 	margin: 10px;
-	padding: 1px;
-	float: right;
-	width: 200px;
+	padding: 0px 10px 0px 10px;
+	width: 80%;
 	text-align: center;
-	background: white;
+	background: #DDFFFF;
 }
 
 div#nav a {
-
+	color: #9966DD;
+	margin: 1px;
+	padding: 2px;
 }
 
 div#nav a:hover {
+	color: #EEFF55;
+	background: #996699;
 
 }
 
@@ -52,11 +55,10 @@ div#nav a:visited {
 
 div#nav_action {
 	text-align: right;
-	margin-bottom: 1px;
+	margin-bottom: 4px;
 }
 
 #nav_edit_button {
-
 }
 
 #nav_edit_button:hover {
@@ -67,14 +69,18 @@ div#nav_action {
 
 }
 
-textarea#nav_content {
-	background: white;
-	width: 90%;
-	height: 80%;
+div#nav_edit_bar {
+	text-align: left;
+	position: relative;
+	left: 5%;
+	margin: 3px;
 }
 
-div#nav_edit_bar {
-	margin-top: 3px;
+textarea#nav_content {
+	background: #FFFFEE;
+	width: 90%;
+	height: 100px;
+	border-color: #FF99CC;
 }
 
 span#search_bar {
@@ -87,29 +93,31 @@ span#search_bar {
 
 div#main_container {
 	height: 70%;
-	width: 70%;
-	padding: 10px;
+	width: 79%;
+	margin: 10px;
 	position: absolute;
 }
 
 div#main {
-
 	background: white;
 	height: 100%;
 	width: 100%;
-	border: 3px black solid;
+	border: 10px black solid;
 	padding: 10px;
 	overflow: auto;
+	background-color: #FFDDFF;
 }
 
 
 
 div#main a {
-
+	color: #9966DD;
+	text-decoration: none;
+	border-bottom: 1px dotted #9966AA;
 }
 
 div#main a:hover {
-
+	color: #AAAACC;
 }
 
 div#main a:active {
@@ -131,40 +139,52 @@ div#page_title {
 	font-weight: bold;
 	text-align: left;
 	padding-left: 10px;
-}
+	float: right;
+	width: 15%;
+	line-height: 35px;}
 
 div#page_title a {
 	text-decoration: none;
-	color: #003855;
+	color: #EEFF55;
+	border: none;
+	background:#996699;
+	padding: 4px;
 }
 
+div#page_title a:hover {
+	background: #EEFF55;
+	border: none;
+	color: #996699;
+}
+
+
 textarea {
-	border-color: #6dc3ef;
-	padding: 3px;
+
 }
 
 textarea#content {
-	background: white;
+	background: #FFFFEE;
 	width: 90%;
 	height: 80%;
+	padding: 3px;
 }
 
 div#edit_bar {
-	margin-top: 3px;
+	margin: 3px;
 }
 
 .wbutton {
 	display: inline-block;
 	cursor: pointer;
-	border: 1px gray solid;
+	border: 2px #FF9944 outset;
 	padding: 0px 3px 0px 3px;
 	margin-top: 5px;
-	background: white;
-	color: gray;
+	background: #FFCC88;
+	color: #332233;
 }
 
 .wbutton:hover {
-	border: 1px black outset;
+	border: 2px #FF9944 inset;
 	color: black;
 }
 

@@ -29,9 +29,11 @@ current_page = File.open("#{$PATH}/storage/#{name_to_file(page)}.rc") {|f| f.rea
 	</span>
 	<br>
 	<textarea id="original_content" style="display:none"><%= current_page %></textarea>
+	<div id="edit_bar">
 	<span id="qs_span">
 		<span class="wbutton" id="quick_save_button" onClick="javascript:quickSave('<%= page %>')">Quick Save</span>
 	</span>
 	<span class="wbutton" id="save_button" onClick="javascript:save('<%= page %>')">Save</span>
 	<span class="wbutton" id="revert_button" onClick="javascript:revertEdit('<%= page %>')">Revert</span>
 	<span class="wbutton" id="cancel_button" onClick="javascript:cancelEdit('<%= page %>')">Cancel</span>
+	</div>

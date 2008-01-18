@@ -67,6 +67,10 @@ textarea#nav_content {
 	height: 80%;
 }
 
+div#nav_edit_bar {
+	margin-top: 3px;
+}
+
 span#search_bar {
 	float: right;
 }
@@ -127,13 +131,17 @@ div#page_title a {
 }
 
 textarea {
-
 }
 
 textarea#content {
 	background: #edfbff;
 	width: 90%;
 	height: 80%;
+	padding: 3px;
+}
+
+div#edit_bar {
+	margin-top: 3px;
 }
 
 .wbutton {

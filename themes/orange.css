@@ -63,6 +63,10 @@ div#main_container {
 	top: -2px;
 }
 
+div#nav_edit_bar {
+	margin-top: 3px;
+}
+
 div#main {
 
 }
@@ -95,7 +99,8 @@ div#page_title {
 	position: relative;
 	left: 50%;
 	margin: 5px;
-	width: 10%;
+	color: orange;
+	padding: 3px;
 }
 
 div#page_title a {
@@ -113,6 +118,9 @@ textarea#content {
 	height: 80%;
 }
 
+div#edit_bar {
+	padding: 3px;
+}
 
 .wbutton {
 	display: inline-block;

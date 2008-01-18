@@ -74,8 +74,12 @@ div#nav textarea {
 
 textarea#nav_content {
 	width: 90%;
-	height: 80%;
+	height: 30%;
 	background: #edfbff;
+}
+
+div#nav_edit_bar {
+	margin-top: 3px;
 }
 
 span#search_bar {
@@ -142,6 +146,11 @@ textarea#content {
 	width: 90%;
 	height: 80%;
 	background: #edfbff;
+	padding: 3px;
+}
+
+div#edit_bar {
+	margin-top: 3px;
 }
 
 .wbutton {

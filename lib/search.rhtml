@@ -23,8 +23,19 @@ License:	GPL
 <% 
 	require "#{$PATH}/lib/util"
 	%><br><b>Search results for <%= Cgi['search_value'] %>:</b><ul><%
+
+	results = 0
+	if Cgi['search_value'] == ""
+		Dir["#{$PATH}/storage/**/*.rc"].sort.each do |path|
+			unless path == "#{$PATH}/storage/nav.rc"
+				path.match(/storage\/(.*)\.rc/)
+				%><li><%= Util.file_to_url(file_to_name($1)) %></li><%
+				results += 1
+			end
+
+		end
+	else
 		search_value =/#{Cgi['search_value'].strip}/i
-		results = 0
 		Dir["#{$PATH}/storage/**/*.rc"].sort.each do |path|
 			File.open(path) do |file|
 				file.grep(search_value) do
@@ -37,8 +48,9 @@ License:	GPL
 				end
 			end
 		end
-		%></ul><%= results > 0 ? "#{results} results" : "No results" %>
-		<br>
-	<br>
-	<input type="text" id="search_value" >
-	<span class="wbutton" id="search_button" onClick="javascript:search()">Search</span><br><br>
+	end
+	%></ul><%= results > 0 ? "#{results} results" : "No results" %>
+<br>
+<br>
+<input type="text" id="search_value" >
+<span class="wbutton" id="search_button" onClick="javascript:search()">Search</span><br><br>
