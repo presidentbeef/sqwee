@@ -149,6 +149,12 @@ textarea#content {
 
 }
 
+textarea#nav_content {
+	background: white;
+	width: 90%;
+	height: 80%;
+}
+
 span#search_bar {
 	float: left;
 	position:relative;

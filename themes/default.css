@@ -61,6 +61,12 @@ div#nav_action {
 
 }
 
+textarea#nav_content {
+	background: #edfbff;
+	width: 90%;
+	height: 80%;
+}
+
 span#search_bar {
 	float: right;
 }
