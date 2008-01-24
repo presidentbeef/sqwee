@@ -90,6 +90,7 @@ FileUtils.cp(modules, "extlib/lighttpd_modules/")
 
 $stderr.puts "Installing eruby..."
 FileUtils.cp("src/eruby/eruby", "bin/")
+FileUtils.cp("src/eruby/eruby-start", "bin/")
 
 $stderr.puts "Cleaning up..."
 
