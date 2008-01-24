@@ -32,7 +32,7 @@ File.open("config/.lighttpd.conf.bak", "w") do |f|
 		when /^server.document-root\s+=\s+".*"/
 			f.puts "server.document-root        = \"#{Dir.pwd}\""
 		when /^cgi.assign = \(".rhtml" => ".*"\)/
-			f.puts "cgi.assign = (\".rhtml\" => \"#{Dir.pwd}\/bin\/eruby\")"
+			f.puts "cgi.assign = (\".rhtml\" => \"#{Dir.pwd}\/bin\/eruby-start\")"
 		else
 			f.puts line
 		end
