@@ -40,7 +40,7 @@ This package contains all the libraries and executables pre-compiled and should 
 
 After extracting the files and changing to the new directory, type './start_server'
 
-Point your webbrowser at http://localhost:8000/
+Point your web browser at http://localhost:8000/
 
 === sqwee-lighttpd-src
 
@@ -55,7 +55,7 @@ This should run all the configurations and compilations and put the resulting fi
 
 Then type './start_server' to start the server.
 
-Point your webbrowser at http://localhost:8000/
+Point your web browser at http://localhost:8000/
 
 It is safe to delete the /src directory once everything is working properly and if you want you can remove Rake: 'gem uninstall rake'.
 
@@ -95,7 +95,7 @@ If the Sqwee default page is loading correctly, try editing and saving it. If yo
 
 Then Sqwee is having trouble finding the SuperRedCloth files. Either place them in the 'extlib' directory or else you will need to change 'lib/save.rhtml' to point to their location.
 
-Once that is all done, you should be pretty much ready to go. The only trouble is that your page might be accessible to the whole world. If you are using Apache, you can drop a .htaccess file right in the main directory to password protect it. If you are using Lighttpd, take a look at 'config/lighttpd.conf' for some thoughts on protecting you Sqwee pages.
+Once that is all done, you should be pretty much ready to go. The only trouble is that your page might be accessible to the whole world. If you are using Apache, you can drop a .htaccess file right in the main directory to password protect it. If you are using Lighttpd, take a look at 'config/lighttpd.conf' for some thoughts on protecting your Sqwee pages.
 
 == Configuration
 
@@ -143,6 +143,8 @@ Run './start_server'
 
 
 == Usage
+
+See the Sqwee homepage for more up-to-date in in-depth information.
 
 === Editing
 
