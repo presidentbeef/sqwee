@@ -21,7 +21,7 @@ License:	GPL
 %>
 
 <%
-$PATH = "."
+$PATH = "../sqwee"
 $DEBUG = true
 $VERBOSE = true
 load "#{$PATH}/config/config.rb"
@@ -38,6 +38,7 @@ def action_bar(current_page)
 			</span>
 			<span class="wbutton" id="new_button"   onClick="javascript:newPage('<%= current_page %>');">New</span>
 			<span class="wbutton" id="edit_button" onClick="javascript:edit('<%= current_page %>');">Edit</span>
+			<span class="wbutton" id="print_button" onClick="javascript:window.open('index.rhtml?action=print&amp;page=<%= current_page %>')">Print</span>
 			<% if current_page != "Index" %>
 			<span class="wbutton" id="delete_button" onClick="javascript:confirmDelete('<%= current_page %>')">Delete</span>
 			<% end 
@@ -113,79 +114,93 @@ action = 'new_full'
 end
 
 case action
-#Loads full page
+	#Loads full page
 when 'view'
-full_page(file, page)
-#Edit page
+	full_page(file, page)
+	#Edit page
 when 'edit'
-ERuby.import("#{$PATH}/lib/edit.rhtml")
-#This is called when a link is followed to a non-existent page
+	ERuby.import("#{$PATH}/lib/edit.rhtml")
+	#This is called when a link is followed to a non-existent page
 when 'new_full'
-full_page("#{$PATH}/lib/new.rhtml", page)
-#New page
+	full_page("#{$PATH}/lib/new.rhtml", page)
+	#New page
 when 'new'
-ERuby.import("#{$PATH}/lib/new.rhtml")
-#Deletes a page and related files
+	ERuby.import("#{$PATH}/lib/new.rhtml")
+	#Deletes a page and related files
 when 'delete'
-ERuby.import("#{$PATH}/lib/delete.rhtml")
-#Asks for confirmation to delete page
+	ERuby.import("#{$PATH}/lib/delete.rhtml")
+	#Asks for confirmation to delete page
 when 'confirm_delete'
 %>
 <span class="warning">Are you sure you want to delete <%= file_to_name(page) %>?</span><br>
 <span class="wbutton" id="yes_button" onClick="javascript:deletePage('<%= page %>');">Yes</span>
 <span class="wbutton" id="no_button" onClick="javascript:cancelEdit('<%= page %>');">No</span>
 <%	
-#Saves the page	
+	#Saves the page	
 when 'save'
-ERuby.import("#{$PATH}/lib/save.rhtml")
-#Saves page but remains in 'edit' mode
+	ERuby.import("#{$PATH}/lib/save.rhtml")
+	#Saves page but remains in 'edit' mode
 when 'quicksave'
-ERuby.import("#{$PATH}/lib/quick_save.rhtml")
-#This only returns the HTML content of a page
+	ERuby.import("#{$PATH}/lib/quick_save.rhtml")
+	#This only returns the HTML content of a page
 when 'show'
-print File.read(file)
-#Replaces content edit box with the previous version of the page	
+	print File.read(file)
+	#Replaces content edit box with the previous version of the page	
 when 'revert'
 %>
 <textarea id="<%= page == "nav" ? "nav_" : "" %>content" rows="20"><%= File.read("#{$PATH}/storage/#{Util.name_to_file(page)}.bak") %></textarea>
 <%	
-#Returns the un-HTMLized content of a page
+	#Returns the un-HTMLized content of a page
 when 'show_rc'
-print File.read("#{$PATH}/storage/#{page}.rc")
-#Checks if a page exists	
+	print File.read("#{$PATH}/storage/#{page}.rc")
+	#Checks if a page exists	
 when "checkpage"
-test_page = Cgi['test_page'].downcase.gsub(/ /, "_")
-if File.exist? "#{$PATH}/storage/#{test_page}.rhtml"
-print File.read("#{$PATH}/storage/#{page}.rc").strip
-end
-#Error page
+	test_page = Cgi['test_page'].downcase.gsub(/ /, "_")
+	if File.exist? "#{$PATH}/storage/#{test_page}.rhtml"
+		print File.read("#{$PATH}/storage/#{page}.rc").strip
+	end
+	#Error page
 when 'error'
-ERuby.import("#{$PATH}/storage/error.rhtml")
-#Editor for navigation box
+	ERuby.import("#{$PATH}/storage/error.rhtml")
+	#Editor for navigation box
 when 'editnav'
-ERuby.import("#{$PATH}/lib/editnav.rhtml")
-#Returns HTML contents of navigation box	
+	ERuby.import("#{$PATH}/lib/editnav.rhtml")
+	#Returns HTML contents of navigation box	
 when 'shownav'
-print File.read("#{$PATH}/storage/nav.rhtml")
+	print File.read("#{$PATH}/storage/nav.rhtml")
 %>
 <br>
 <div id="nav_action">
 	<span class="wbutton" id="nav_edit_button" onClick="javascript:editNav();">Edit</span>
 </div>
-<%
-#Resets the action bar with new page name (e.g., after creating a new page)
+	<%
+	#Resets the action bar with new page name (e.g., after creating a new page)
 when 'reload_actionbar'
-action_bar(name_to_link(Cgi['page']))
-#Displays page title (e.g, after creating a new page)
+	action_bar(name_to_link(Cgi['page']))
+	#Displays page title (e.g, after creating a new page)
 when 'reload_title'
 %>
 <%= file_to_url(Cgi['current_page']) %>
 <%
 when 'search'
-full_page("lib/search.rhtml", "Search")
+	full_page("lib/search.rhtml", "Search")
 when 'find'
-ERuby.import("#{$PATH}/lib/search.rhtml")
+	ERuby.import("#{$PATH}/lib/search.rhtml")
+when 'print'
+	%>
+	<html>
+		<head>
+			<title><%= CONFIG['title'] %></title>
+			<link type="text/css" rel="stylesheet" href="<%= $PATH %>/themes/<%= CONFIG['theme'] %>.css">
+		</head>
+		<body class="print_body">
+			<div class="print_div">
+				<h2><%= Util.file_to_name(page) %></h2>
+				<%= File.read(file) %>
+			</div>
+		</body>
+	</html>
+	<%
 else
 end
 %>
-
