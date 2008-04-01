@@ -193,8 +193,8 @@ when 'print'
 			<title><%= CONFIG['title'] %></title>
 			<link type="text/css" rel="stylesheet" href="<%= $PATH %>/themes/<%= CONFIG['theme'] %>.css">
 		</head>
-		<body class="print_body">
-			<div class="print_div">
+		<body style="background-color:white" onLoad="javascript:window.print()">
+			<div class="print_div" style="background-color:white;">
 				<h2><%= Util.file_to_name(page) %></h2>
 				<%= File.read(file) %>
 			</div>
