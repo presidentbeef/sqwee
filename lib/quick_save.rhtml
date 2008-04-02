@@ -20,7 +20,7 @@ License:	GPL
     along with Sqwee.  If not, see <http://www.gnu.org/licenses/>.
 %>
 <% 
-require "#{$PATH}/extlib/superredcloth"
+require "#{$PATH}/extlib/redcloth"
 require "fileutils"
 require "#{$PATH}/lib/util"
 include Util
@@ -28,7 +28,7 @@ include Util
 rc_content = Cgi['content'].strip
 
 page = sanitize(Cgi['page'])
-html_content = SuperRedCloth.new(rc_content.gsub(/(\:?)\[\[(.*?)\]\]/) { |match|
+html_content = RedCloth.new(rc_content.gsub(/(\:?)\[\[(.*?)\]\]/) { |match|
 		if $1 == ":"
 			":index.rhtml?action=view&amp;page=#{name_to_link($2)}"
 		else
