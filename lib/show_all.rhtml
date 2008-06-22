@@ -1,0 +1,70 @@
+<%# 
+Homepage:	http://sqwee.rubyforge.org/
+Author:		Justin Collins (http://presidentbeef.com/)
+Copyright:	2008, Justin Collins
+License:	GPL
+
+    This file is part of Sqwee.
+
+    Sqwee is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Sqwee is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Sqwee.  If not, see <http://www.gnu.org/licenses/>.
+%>
+
+<%
+require 'pathname'
+require "#{$PATH}/lib/util"
+
+links_to = {}
+
+full_paths = Pathname.glob("#{$PATH}/storage/**/*.rc")
+
+#No ../sqwee/storage
+file_paths = full_paths.map {|p| p.relative_path_from(Pathname.new("#{$PATH}/storage")) }
+
+#names in link format
+page_names = file_paths.map {|fp| Util.name_to_link(Util.file_to_name(fp.to_s[0..-4])) }
+
+full_paths.each do |fp|
+	this_page = Util.name_to_link(Util.file_to_name(fp.relative_path_from(Pathname.new("#{$PATH}/storage")).to_s[0..-4]))
+	fp.open do |f|
+		f.readlines.each do |l|
+			links_to[this_page] = []
+			l.scan(/\[\[(.*?)\]\]/) do |m|
+				links_to[this_page] << Util.name_to_link($1)
+			end
+		end
+	end
+end
+%>
+Found <%= links_to.keys.length - 1 %> page(s).<br>
+<ul>
+<%
+links_to.keys.sort.each do |p|
+	next if p == "nav"
+	color = nil
+	%><li><%= Util.file_to_url(p) %>
+		<ul style="margin-bottom:5px">
+		<% links_to[p].sort.each do |l|
+			if not page_names.include? l
+				color = "red"
+			end
+			%>
+			<li>
+				<%= Util.file_to_url(l, color) %>
+			</li>
+		<% end %>
+		</ul>
+	</li>
+<% end %>
+
+</ul>

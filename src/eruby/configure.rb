@@ -306,7 +306,7 @@ if $LDFLAGS.to_s.empty? && /mswin32/ =~ RUBY_PLATFORM
   $LDFLAGS = "-link -incremental:no -pdb:none"
 end
 $LIBS = CONFIG["LIBS"]
-$XLDFLAGS = CONFIG["XLDFLAGS"]
+$XLDFLAGS = CONFIG["XLDFLAGS"] || ""
 $XLDFLAGS.gsub!(/-L\./, "")
 if /mswin32/ !~ RUBY_PLATFORM
   $XLDFLAGS += " -L$(libdir)"

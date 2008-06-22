@@ -1,6 +1,6 @@
 # Generated automatically by configure.rb.
 
-srcdir = /home/justin/pkgs/sqwee-lighttpd-src/src/eruby
+srcdir = /home/justin/work/sqwee-test/src/eruby
 topdir = /usr/lib/ruby/1.8/i686-linux
 hdrdir = /usr/lib/ruby/1.8/i686-linux
 VPATH = $(srcdir)
@@ -18,7 +18,7 @@ datadir = $(datarootdir)
 libdir = $(exec_prefix)/lib
 rubylibdir = $(libdir)/ruby/$(ruby_version)
 archdir = $(rubylibdir)/$(arch)
-sitedir = $(prefix)/lib/ruby/site_ruby
+sitedir = $(libdir)/ruby/site_ruby
 sitelibdir = $(sitedir)/$(ruby_version)
 sitearchdir = $(sitelibdir)/$(sitearch)
 includedir = $(prefix)/include
@@ -30,9 +30,9 @@ LD = $(CC)
 RANLIB = ranlib
 RUBY = $(RUBY_INSTALL_NAME)
 
-CFLAGS = -g -O2  -fPIC -Wall -I. -I$(hdrdir)
+CFLAGS = -g -O2 $(cflags)  -fPIC -Wall -I. -I$(hdrdir)
 LDFLAGS = -L.  -rdynamic -Wl,-export-dynamic
-LIBS = -ldl -lcrypt -lm 
+LIBS = -lpthread -ldl -lcrypt -lm 
 XLDFLAGS =  -L$(libdir)
 DLDFLAGS = 
 LDSHARED = $(CC) -shared

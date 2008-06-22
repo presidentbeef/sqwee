@@ -22,20 +22,15 @@ License:	GPL
 
 <% 
 	require "#{$PATH}/lib/util"
-	%><br><b>Search results for <%= Cgi['search_value'] %>:</b><ul><%
 
 	results = 0
 	if Cgi['search_value'] == ""
-		Dir["#{$PATH}/storage/**/*.rc"].sort.each do |path|
-			unless path == "#{$PATH}/storage/nav.rc"
-				path.match(/storage\/(.*)\.rc/)
-				%><li><%= Util.file_to_url(file_to_name($1)) %></li><%
-				results += 1
-			end
-
-		end
+		%><br><%
+		ERuby.import("#{$PATH}/lib/show_all.rhtml")
 	else
+		%><br><b>Search results for <%= Cgi['search_value'] %>:</b><%
 		search_value =/#{Cgi['search_value'].strip}/i
+		%><ul><%
 		Dir["#{$PATH}/storage/**/*.rc"].sort.each do |path|
 			File.open(path) do |file|
 				file.grep(search_value) do
@@ -48,8 +43,14 @@ License:	GPL
 				end
 			end
 		end
+		%></ul><%
+		if results > 0
+			puts "#{results} results."
+		else
+			puts "No results"
+		end
 	end
-	%></ul><%= results > 0 ? "#{results} results" : "No results" %>
+%>
 <br>
 <br>
 <input type="text" id="search_value" >

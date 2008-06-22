@@ -8,7 +8,7 @@
 /* #undef HAVE_ATTR_ATTRIBUTES_H */
 
 /* Define to 1 if you have the <bzlib.h> header file. */
-/* #undef HAVE_BZLIB_H */
+#define HAVE_BZLIB_H 1
 
 /* Define to 1 if you have the `chroot' function. */
 #define HAVE_CHROOT 1
@@ -92,7 +92,7 @@
 /* #undef HAVE_LDAP_H */
 
 /* libbz2 */
-/* #undef HAVE_LIBBZ2 */
+#define HAVE_LIBBZ2 1
 
 /* libcrypt */
 #define HAVE_LIBCRYPT 1

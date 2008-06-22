@@ -21,7 +21,7 @@ License:	GPL
 %>
 
 <% 
-require "#{$PATH}/extlib/redcloth"
+require "#{$PATH}/extlib/superredcloth"
 require "fileutils"
 require "#{$PATH}/lib/util"
 include Util
@@ -29,7 +29,7 @@ include Util
 rc_content = Cgi['content'].strip
 
 page = sanitize(Cgi['page'])
-html_content = RedCloth.new(rc_content.gsub(/(\:?)\[\[(.*?)\]\]/) { |match|
+html_content = SuperRedCloth.new(rc_content.gsub(/(\:?)\[\[(.*?)\]\]/) { |match|
 		if $1 == ":"
 			":index.rhtml?action=view&amp;page=#{name_to_link($2)}"
 		else

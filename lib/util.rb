@@ -33,11 +33,16 @@ module Util
 		file.strip.gsub(/_/, " ").gsub(/\//, ":")
 	end
 
-	def file_to_url(file)
+	def file_to_url(file, color = nil)
 		pages = name_to_link(file).split(":")
 		url = []
+		if color
+			link_color = "style='color:#{color}'"
+		else
+			link_color = ""
+		end
 		pages.each_with_index do |page, i|
-			url << "<a href=\"index.rhtml?action=view&amp;page=#{pages[0..i].join(":")}\">#{page.gsub(/_/, " ")}</a>"
+			url << "<a #{link_color} href=\"index.rhtml?action=view&amp;page=#{pages[0..i].join(":")}\">#{page.gsub(/_/, " ")}</a>"
 		end
 		url.join(" : ")
 	end

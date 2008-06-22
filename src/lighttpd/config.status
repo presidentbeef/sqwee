@@ -301,7 +301,7 @@ on `(hostname || uname -n) 2>/dev/null | sed 1q`
 "
 
 # Files that config.status was made for.
-config_files=" Makefile src/Makefile doc/Makefile tests/Makefile tests/docroot/Makefile tests/docroot/123/Makefile tests/docroot/www/Makefile tests/docroot/www/go/Makefile tests/docroot/www/indexfile/Makefile tests/docroot/www/expire/Makefile lighttpd.spec distribute.sh cygwin/Makefile cygwin/lighttpd.README openwrt/Makefile openwrt/control openwrt/lighttpd.mk"
+config_files=" Makefile src/Makefile lighttpd.spec distribute.sh"
 config_headers=" config.h"
 config_commands=" depfiles"
 
@@ -341,7 +341,7 @@ Copyright (C) 2006 Free Software Foundation, Inc.
 This config.status script is free software; the Free Software Foundation
 gives unlimited permission to copy, distribute and modify it."
 
-ac_pwd='/home/justin/pkgs/sqwee-lighttpd-src/src/lighttpd'
+ac_pwd='/home/justin/work/sqwee-test/src/lighttpd'
 srcdir='.'
 INSTALL='/usr/bin/install -c'
 MKDIR_P='/bin/mkdir -p'
@@ -439,21 +439,8 @@ do
     "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
-    "doc/Makefile") CONFIG_FILES="$CONFIG_FILES doc/Makefile" ;;
-    "tests/Makefile") CONFIG_FILES="$CONFIG_FILES tests/Makefile" ;;
-    "tests/docroot/Makefile") CONFIG_FILES="$CONFIG_FILES tests/docroot/Makefile" ;;
-    "tests/docroot/123/Makefile") CONFIG_FILES="$CONFIG_FILES tests/docroot/123/Makefile" ;;
-    "tests/docroot/www/Makefile") CONFIG_FILES="$CONFIG_FILES tests/docroot/www/Makefile" ;;
-    "tests/docroot/www/go/Makefile") CONFIG_FILES="$CONFIG_FILES tests/docroot/www/go/Makefile" ;;
-    "tests/docroot/www/indexfile/Makefile") CONFIG_FILES="$CONFIG_FILES tests/docroot/www/indexfile/Makefile" ;;
-    "tests/docroot/www/expire/Makefile") CONFIG_FILES="$CONFIG_FILES tests/docroot/www/expire/Makefile" ;;
     "lighttpd.spec") CONFIG_FILES="$CONFIG_FILES lighttpd.spec" ;;
     "distribute.sh") CONFIG_FILES="$CONFIG_FILES distribute.sh" ;;
-    "cygwin/Makefile") CONFIG_FILES="$CONFIG_FILES cygwin/Makefile" ;;
-    "cygwin/lighttpd.README") CONFIG_FILES="$CONFIG_FILES cygwin/lighttpd.README" ;;
-    "openwrt/Makefile") CONFIG_FILES="$CONFIG_FILES openwrt/Makefile" ;;
-    "openwrt/control") CONFIG_FILES="$CONFIG_FILES openwrt/control" ;;
-    "openwrt/lighttpd.mk") CONFIG_FILES="$CONFIG_FILES openwrt/lighttpd.mk" ;;
 
   *) { { echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
 echo "$as_me: error: invalid argument: $ac_config_target" >&2;}
@@ -567,19 +554,19 @@ s,@am__isrc@,|#_!!_#|,g
 s,@CYGPATH_W@,|#_!!_#|echo,g
 s,@PACKAGE@,|#_!!_#|lighttpd,g
 s,@VERSION@,|#_!!_#|1.4.18,g
-s,@ACLOCAL@,|#_!!_#|${SHELL} /home/justin/pkgs/sqwee-lighttpd-src/src/lighttpd/missing --run aclocal-1.10,g
-s,@AUTOCONF@,|#_!!_#|${SHELL} /home/justin/pkgs/sqwee-lighttpd-src/src/lighttpd/missing --run autoconf,g
-s,@AUTOMAKE@,|#_!!_#|${SHELL} /home/justin/pkgs/sqwee-lighttpd-src/src/lighttpd/missing --run automake-1.10,g
-s,@AUTOHEADER@,|#_!!_#|${SHELL} /home/justin/pkgs/sqwee-lighttpd-src/src/lighttpd/missing --run autoheader,g
-s,@MAKEINFO@,|#_!!_#|${SHELL} /home/justin/pkgs/sqwee-lighttpd-src/src/lighttpd/missing --run makeinfo,g
-s,@install_sh@,|#_!!_#|$(SHELL) /home/justin/pkgs/sqwee-lighttpd-src/src/lighttpd/install-sh,g
+s,@ACLOCAL@,|#_!!_#|${SHELL} /home/justin/work/sqwee-test/src/lighttpd/missing --run aclocal-1.10,g
+s,@AUTOCONF@,|#_!!_#|${SHELL} /home/justin/work/sqwee-test/src/lighttpd/missing --run autoconf,g
+s,@AUTOMAKE@,|#_!!_#|${SHELL} /home/justin/work/sqwee-test/src/lighttpd/missing --run automake-1.10,g
+s,@AUTOHEADER@,|#_!!_#|${SHELL} /home/justin/work/sqwee-test/src/lighttpd/missing --run autoheader,g
+s,@MAKEINFO@,|#_!!_#|${SHELL} /home/justin/work/sqwee-test/src/lighttpd/missing --run makeinfo,g
+s,@install_sh@,|#_!!_#|$(SHELL) /home/justin/work/sqwee-test/src/lighttpd/install-sh,g
 s,@STRIP@,|#_!!_#|strip,g
 s,@INSTALL_STRIP_PROGRAM@,|#_!!_#|$(install_sh) -c -s,g
 s,@mkdir_p@,|#_!!_#|/bin/mkdir -p,g
 s,@AWK@,|#_!!_#|gawk,g
 s,@SET_MAKE@,|#_!!_#|,g
 s,@am__leading_dot@,|#_!!_#|.,g
-s,@AMTAR@,|#_!!_#|${SHELL} /home/justin/pkgs/sqwee-lighttpd-src/src/lighttpd/missing --run tar,g
+s,@AMTAR@,|#_!!_#|${SHELL} /home/justin/work/sqwee-test/src/lighttpd/missing --run tar,g
 s,@am__tar@,|#_!!_#|${AMTAR} chof - "$$tardir",g
 s,@am__untar@,|#_!!_#|${AMTAR} xf -,g
 s,@MAINTAINER_MODE_TRUE@,|#_!!_#|#,g
@@ -638,7 +625,7 @@ s,@SSL_LIB@,|#_!!_#|,g
 s,@PCRECONFIG@,|#_!!_#|/usr/bin/pcre-config,g
 s,@PCRE_LIB@,|#_!!_#|-L/usr/lib -lpcre,g
 s,@Z_LIB@,|#_!!_#|-lz,g
-s,@BZ_LIB@,|#_!!_#|,g
+s,@BZ_LIB@,|#_!!_#|-lbz2,g
 s,@PKG_CONFIG@,|#_!!_#|/usr/bin/pkg-config,g
 s,@FAM_CFLAGS@,|#_!!_#|,g
 s,@FAM_LIBS@,|#_!!_#|,g
@@ -986,6 +973,9 @@ s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_PCRE_H\)[	 (].*,\1define\2 1 ,
 s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_ZLIB_H\)[	 (].*,\1define\2 1 ,
 s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_LIBZ\)[	 (].*,\1define\2 1 ,
 s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_ZLIB_H\)[	 (].*,\1define\2 1 ,
+s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_BZLIB_H\)[	 (].*,\1define\2 1 ,
+s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_LIBBZ2\)[	 (].*,\1define\2 1 ,
+s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_BZLIB_H\)[	 (].*,\1define\2 1 ,
 s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_CRYPT_H\)[	 (].*,\1define\2 1 ,
 s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_LIBCRYPT\)[	 (].*,\1define\2 1 ,
 s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_DUP2\)[	 (].*,\1define\2 1 ,
@@ -1019,9 +1009,6 @@ s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_POSIX_FADVISE\)[	 (].*,\1define\2 1 ,
 s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_POSIX_MADVISE\)[	 (].*,\1define\2 1 ,
 s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_WRITEV\)[	 (].*,\1define\2 1 ,
 s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_SIGACTION\)[	 (].*,\1define\2 1 ,
-s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_SENDFILE64\)[	 (].*,\1define\2 1 ,
-s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_LOCALTIME_R\)[	 (].*,\1define\2 1 ,
-s,^\([	 #]*\)[^	 ]*\([	 ]*SIZEOF_LONG\)[	 (].*,\1define\2 4 ,
 CEOF
     sed -f "$tmp/defines.sed" "$tmp/out1" >"$tmp/out2"
     # First, check the format of the line:
@@ -1030,6 +1017,9 @@ CEOF
 /^[	 ]*#[	 ]*define[	 ][	 ]*[_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ][_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789]*[(	 ]/b def
 b
 :def
+s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_SENDFILE64\)[	 (].*,\1define\2 1 ,
+s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_LOCALTIME_R\)[	 (].*,\1define\2 1 ,
+s,^\([	 #]*\)[^	 ]*\([	 ]*SIZEOF_LONG\)[	 (].*,\1define\2 4 ,
 s,^\([	 #]*\)[^	 ]*\([	 ]*SIZEOF_OFF_T\)[	 (].*,\1define\2 4 ,
 s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_IPV6\)[	 (].*,\1define\2 1 ,
 s,^\([	 #]*\)[^	 ]*\([	 ]*LIGHTTPD_VERSION_ID\)[	 (].*,\1define\2 (1 << 16 | 4 << 8 | 18) ,

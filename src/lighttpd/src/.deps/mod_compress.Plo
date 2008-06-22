@@ -43,8 +43,8 @@ mod_compress.lo .libs/mod_compress.o: mod_compress.c \
   /usr/include/sys/un.h /usr/include/arpa/inet.h /usr/include/netdb.h \
   /usr/include/rpc/netdb.h /usr/include/bits/netdb.h splaytree.h etag.h \
   log.h server.h response.h stat_cache.h plugin.h crc32.h \
-  /usr/include/zlib.h /usr/include/zconf.h sys-mmap.h \
-  /usr/include/sys/mman.h /usr/include/bits/mman.h
+  /usr/include/zlib.h /usr/include/zconf.h /usr/include/bzlib.h \
+  sys-mmap.h /usr/include/sys/mman.h /usr/include/bits/mman.h
 
 /usr/include/sys/types.h:
 
@@ -257,6 +257,8 @@ crc32.h:
 /usr/include/zlib.h:
 
 /usr/include/zconf.h:
+
+/usr/include/bzlib.h:
 
 sys-mmap.h:
 
