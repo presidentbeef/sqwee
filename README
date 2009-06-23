@@ -14,11 +14,12 @@ Sqwee is a quick and easy way to have a wiki-like webpage which you can use for 
 For sqwee-lighttpd-bin:
 
 	1. Ruby
+        2. RedCloth
 	
 For sqwee-lighttpd-src:
 
 	1. Ruby
-	2. Rake
+	2. RedCloth
 	3. GCC
 	4. Make
 	5. libpcre
@@ -27,12 +28,14 @@ For sqwee-src:
 
 	1. Ruby
 	2. eruby 
-	3. SuperRedCloth
+	3. RedCloth
 	4. Webserver...Lighttpd, Apache, etc.
 
 == Install
 
 There are three different packages for Sqwee, each with a different purpose.
+
+For all three packages, you will need to install RedCloth. The simplest way is 'gem install RedCloth'
 
 === sqwee-lighttpd-bin
 
@@ -44,11 +47,7 @@ Point your web browser at http://localhost:8000/
 
 === sqwee-lighttpd-src
 
-This package includes the source for Lighttpd, eruby, and SuperRedCloth so you can compile everything you need, except for libpcre. libpcre should be installed on your system already, or else you can easily install it using your distribution's package manager.
-
-You -will- need to install Rake (for SuperRedCloth), but that's easy:
-
-'gem install rake'
+This package includes the source for Lighttpd and eruby to make those simpler to compile. libpcre should be installed on your system already, or else you can easily install it using your distribution's package manager.
 
 After extracting the files and changing to the new directory, type './setup.rb'
 This should run all the configurations and compilations and put the resulting files in the correct place.
@@ -57,7 +56,7 @@ Then type './start_server' to start the server.
 
 Point your web browser at http://localhost:8000/
 
-It is safe to delete the /src directory once everything is working properly and if you want you can remove Rake: 'gem uninstall rake'.
+It is safe to delete the /src directory once everything is working properly.
 
 !! If something goes wrong:
 
@@ -68,8 +67,6 @@ Try running './setup --debug' to get all the output you can.
 This package is for the do-it-yourselfers. It only provides the Ruby and Javascript files you need to get going.
 
 You basically need to point your webserver at the main directory (where index.rhtml is) and make sure it can serve up .rhtml files (with eruby).
-
-You will need to install SuperRedCloth. Visit http://code.whytheluckystiff.net/redcloth/wiki/SuperRedCloth to get and build the code. The two resulting files you'll need are 'superredcloth.rb' and 'superredcloth_scan.so'. Copy these two files to the 'extlib' directory for best results.
 
 Right now, you will probably get this kind of error when visiting the sqwee directory:
 no such file to load -- ./config/config.rb (LoadError)
@@ -89,11 +86,6 @@ For example, if you have the following file structure:
    --index.rhtml
 
 Then your $PATH variable should be set to: '../sqwee/' (Trailing slash optional)
-
-If the Sqwee default page is loading correctly, try editing and saving it. If you get an error like
-../sqwee//lib/save.rhtml:24:in `require': no such file to load -- ../sqwee//extlib/superredcloth (LoadError)
-
-Then Sqwee is having trouble finding the SuperRedCloth files. Either place them in the 'extlib' directory or else you will need to change 'lib/save.rhtml' to point to their location.
 
 Once that is all done, you should be pretty much ready to go. The only trouble is that your page might be accessible to the whole world. If you are using Apache, you can drop a .htaccess file right in the main directory to password protect it. If you are using Lighttpd, take a look at 'config/lighttpd.conf' for some thoughts on protecting your Sqwee pages.
 
@@ -140,7 +132,6 @@ Edit the config/.password file. The format is:
 username:password
 
 Run './start_server'
-
 
 == Usage
 

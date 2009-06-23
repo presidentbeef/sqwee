@@ -30,27 +30,32 @@ else
 	quiet = "--quiet"
 end
 
-abort "Rake required for compilation - please use 'gem install rake' to install. You may uninstall after successfully building Sqwee." unless system("which rake")
+begin
+	require "redcloth"
+rescue LoadError
+	begin
+		require "rubygems"
+	rescue LoadError
+		abort "Install RedCloth, either via Ruby Gems or manually."
+	end
+
+	begin
+		require "redcloth"
+	rescue LoadError
+		print "Install RedCloth via RubyGems? "
+		if gets.chomp =~ /^y/i
+			unless system("gem install RedCloth")
+				abort "Error installing RedCloth."
+			end
+		else
+			abort "Please install RedCloth."
+		end
+	end
+end
+
 
 FileUtils.rm_rf("bin/*", {:secure => true})
 FileUtils.rm_rf("extlib/*", {:secure => true})
-
-#Build Ragel
-Dir.chdir("src/ragel") do
-	$stderr.puts "Building Ragel..."
-	system("./configure #{quiet}") or abort "Error configuring Ragel"
-	system("make -j2 #{quiet}") or abort "Error building Ragel"
-end
-
-
-#Build SuperRedCloth
-Dir.chdir("src/superredcloth") do
-	$stderr.puts "Building SuperRedCloth..."
-	system("rake #{quiet}")
-	if not File.exist? "lib/superredcloth_scan.so"
-		abort "Error building SuperRedCloth"
-	end
-end
 
 #Build Lighttpd
 Dir.chdir("src/lighttpd") do
@@ -67,17 +72,6 @@ Dir.chdir("src/eruby") do
 end
 
 #Move the files over
-$stderr.puts "Installing SuperRedCloth..."
-FileUtils.cp("src/superredcloth/lib/superredcloth.rb", "extlib/")
-FileUtils.cp("src/superredcloth/lib/superredcloth_scan.so", "extlib/")
-File.open("extlib/superredcloth.rb.bak", "w") do |f|
-	File.readlines("./extlib/superredcloth.rb").each do |line|
-		f.puts line.sub(/require 'superredcloth_scan'/, "require 'extlib/superredcloth_scan'")
-	end
-end
-
-`mv ./extlib/superredcloth.rb.bak ./extlib/superredcloth.rb`
-
 
 $stderr.puts "Installing Lighttpd..."
 modules = ["src/lighttpd/src/.libs/mod_auth.la", "src/lighttpd/src/.libs/mod_auth.so", "src/lighttpd/src/.libs/mod_access.la", "src/lighttpd/src/.libs/mod_access.so", "src/lighttpd/src/.libs/mod_accesslog.la", "src/lighttpd/src/.libs/mod_accesslog.so", "src/lighttpd/src/.libs/mod_cgi.la", "src/lighttpd/src/.libs/mod_cgi.so", "src/lighttpd/src/.libs/mod_indexfile.la", "src/lighttpd/src/.libs/mod_indexfile.so", "src/lighttpd/src/.libs/mod_dirlisting.la", "src/lighttpd/src/.libs/mod_dirlisting.so", "src/lighttpd/src/.libs/mod_staticfile.la", "src/lighttpd/src/.libs/mod_staticfile.so" ]
@@ -94,19 +88,11 @@ FileUtils.cp("src/eruby/eruby-start", "bin/")
 
 $stderr.puts "Cleaning up..."
 
-Dir.chdir("src/ragel") do
+Dir.chdir("src/lighttpd") do
 	system("make clean")
-end
-
-Dir.chdir("src/superredcloth") do
-	system("rake clean")
 end
 
 Dir.chdir("src/eruby") do
-	system("make clean")
-end
-
-Dir.chdir("src/lighttpd") do
 	system("make clean")
 end
 

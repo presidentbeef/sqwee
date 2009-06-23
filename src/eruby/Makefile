@@ -1,6 +1,6 @@
 # Generated automatically by configure.rb.
 
-srcdir = /home/justin/work/sqwee-test/src/eruby
+srcdir = /home/justin/pkgs/sqwee/src/eruby
 topdir = /usr/lib/ruby/1.8/i686-linux
 hdrdir = /usr/lib/ruby/1.8/i686-linux
 VPATH = $(srcdir)
@@ -32,7 +32,7 @@ RUBY = $(RUBY_INSTALL_NAME)
 
 CFLAGS = -g -O2 $(cflags)  -fPIC -Wall -I. -I$(hdrdir)
 LDFLAGS = -L.  -rdynamic -Wl,-export-dynamic
-LIBS = -lpthread -ldl -lcrypt -lm 
+LIBS = -lrt -ldl -lcrypt -lm 
 XLDFLAGS =  -L$(libdir)
 DLDFLAGS = 
 LDSHARED = $(CC) -shared
