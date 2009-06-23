@@ -592,7 +592,7 @@ configure:10887: checking whether stripping libraries is possible
 configure:10892: result: yes
 configure:11020: checking for shl_load
 configure:11076: gcc -o conftest -g -O2   conftest.c  >&5
-/home/justin/tmp/ccGGw7dR.o: In function `main':
+/home/justin/tmp/ccmyqiSh.o: In function `main':
 /home/justin/pkgs/sqwee/src/lighttpd/conftest.c:68: undefined reference to `shl_load'
 collect2: ld returned 1 exit status
 configure:11083: $? = 1
@@ -726,7 +726,7 @@ configure: failed program was:
 configure:11171: result: no
 configure:11176: checking for dlopen
 configure:11232: gcc -o conftest -g -O2   conftest.c  >&5
-/home/justin/tmp/ccqYPRsh.o: In function `main':
+/home/justin/tmp/cco9i28P.o: In function `main':
 /home/justin/pkgs/sqwee/src/lighttpd/conftest.c:68: undefined reference to `dlopen'
 collect2: ld returned 1 exit status
 configure:11239: $? = 1
@@ -2586,7 +2586,7 @@ configure:23289: $? = 0
 configure:23311: result: yes
 configure:23403: checking for issetugid
 configure:23459: gcc -o conftest -g -O2  -D_REENTRANT -D__EXTENSIONS__  conftest.c  >&5
-/home/justin/tmp/ccYGGnMi.o: In function `main':
+/home/justin/tmp/cceabyLS.o: In function `main':
 /home/justin/pkgs/sqwee/src/lighttpd/conftest.c:102: undefined reference to `issetugid'
 collect2: ld returned 1 exit status
 configure:23466: $? = 1
@@ -2721,7 +2721,7 @@ configure:24716: $? = 0
 configure:24747: result: none required
 configure:24757: checking for library containing dlopen
 configure:24798: gcc -o conftest -g -O2  -D_REENTRANT -D__EXTENSIONS__  conftest.c  >&5
-/home/justin/tmp/cckc1BMr.o: In function `main':
+/home/justin/tmp/ccsUyaUb.o: In function `main':
 /home/justin/pkgs/sqwee/src/lighttpd/conftest.c:80: undefined reference to `dlopen'
 collect2: ld returned 1 exit status
 configure:24805: $? = 1
@@ -2870,7 +2870,7 @@ configure:27764: checking if lua-support is requested
 configure:27775: result: no
 configure:28109: checking for library containing crypt
 configure:28150: gcc -o conftest -g -O2  -D_REENTRANT -D__EXTENSIONS__   conftest.c  >&5
-/home/justin/tmp/cc62Inqi.o: In function `main':
+/home/justin/tmp/ccOQxCUe.o: In function `main':
 /home/justin/pkgs/sqwee/src/lighttpd/conftest.c:91: undefined reference to `crypt'
 collect2: ld returned 1 exit status
 configure:28157: $? = 1
@@ -2984,7 +2984,7 @@ configure:28321: checking for crypt.h
 configure:28330: result: yes
 configure:28366: checking for library containing sendfilev
 configure:28407: gcc -o conftest -g -O2  -D_REENTRANT -D__EXTENSIONS__   conftest.c  >&5
-/home/justin/tmp/ccmzbJAb.o: In function `main':
+/home/justin/tmp/ccMZYToo.o: In function `main':
 /home/justin/pkgs/sqwee/src/lighttpd/conftest.c:94: undefined reference to `sendfilev'
 collect2: ld returned 1 exit status
 configure:28414: $? = 1
@@ -3323,7 +3323,7 @@ configure:28577: $? = 0
 configure:28599: result: yes
 configure:28514: checking for send_file
 configure:28570: gcc -o conftest -g -O2  -D_REENTRANT -D__EXTENSIONS__   conftest.c  >&5
-/home/justin/tmp/ccIMHQrK.o: In function `main':
+/home/justin/tmp/ccuUR0as.o: In function `main':
 /home/justin/pkgs/sqwee/src/lighttpd/conftest.c:149: undefined reference to `send_file'
 collect2: ld returned 1 exit status
 configure:28577: $? = 1
@@ -3483,7 +3483,7 @@ configure: failed program was:
 configure:28599: result: no
 configure:28514: checking for kqueue
 configure:28570: gcc -o conftest -g -O2  -D_REENTRANT -D__EXTENSIONS__   conftest.c  >&5
-/home/justin/tmp/ccKLqw01.o: In function `main':
+/home/justin/tmp/ccmmaGqP.o: In function `main':
 /home/justin/pkgs/sqwee/src/lighttpd/conftest.c:149: undefined reference to `kqueue'
 collect2: ld returned 1 exit status
 configure:28577: $? = 1
@@ -3643,7 +3643,7 @@ configure: failed program was:
 configure:28599: result: no
 configure:28514: checking for port_create
 configure:28570: gcc -o conftest -g -O2  -D_REENTRANT -D__EXTENSIONS__   conftest.c  >&5
-/home/justin/tmp/ccazbPHn.o: In function `main':
+/home/justin/tmp/cceOoVRe.o: In function `main':
 /home/justin/pkgs/sqwee/src/lighttpd/conftest.c:149: undefined reference to `port_create'
 collect2: ld returned 1 exit status
 configure:28577: $? = 1
@@ -3996,6 +3996,7 @@ on bigblue
 config.status:935: creating Makefile
 config.status:935: creating src/Makefile
 config.status:935: creating config.h
+config.status:1157: config.h is unchanged
 config.status:1209: executing depfiles commands
 
 ## ---------------- ##

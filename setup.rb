@@ -44,7 +44,7 @@ rescue LoadError
 	rescue LoadError
 		print "Install RedCloth via RubyGems? "
 		if gets.chomp =~ /^y/i
-			unless system("gem install RedCloth")
+			unless system("sudo gem install RedCloth --no-rdoc --no-ri")
 				abort "Error installing RedCloth."
 			end
 		else
